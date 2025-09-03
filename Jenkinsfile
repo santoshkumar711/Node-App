@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com:YOUR_USERNAME/YOUR_REPO.git'
+                git branch: 'main', url: 'https://github.com/santoshkumar711/Node-App.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t nodeapp:latest .'
+                sh 'docker build -t nodeapp:v1 .'
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 80:3000 --name nodeapp nodeapp:latest'
+                sh 'docker run -d -p 80:3000 --name nodeapp nodeapp:v1'
             }
         }
     }
